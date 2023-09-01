@@ -1,0 +1,62 @@
+# Create/Update index lifecycle policy (rollover)
+PUT _ilm/policy/camunda_policy
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "actions": {
+          "rollover": {
+            "max_primary_shard_size": "3GB" 
+          }
+        }
+      },
+      "delete": {
+        "min_age": "45d",
+        "actions": {
+          "delete": {} 
+        }
+      }
+    }
+  }
+}
+
+
+# Create/Update index lifecycle policy (apply immediately)
+# https://stackoverflow.com/questions/59859306/elasticsearch-ilm-not-deleting-indices
+PUT _ilm/policy/camunda_policy
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "actions": {
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "delete": {
+        "min_age": "30d",
+        "actions": {
+          "delete": {} 
+        }
+      }
+    }
+  }
+}
+
+
+
+# Apply policy to multiple indexes
+PUT operate-event*/_settings 
+{
+  "index": {
+    "lifecycle": {
+      "name": "camunda_policy"
+    }
+  }
+}
+
+
+# List policy details
+GET _ilm/policy/camunda_policy
+
