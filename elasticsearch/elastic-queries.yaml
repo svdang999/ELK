@@ -6,7 +6,8 @@ PUT _ilm/policy/camunda_policy
       "hot": {
         "actions": {
           "rollover": {
-            "max_primary_shard_size": "3GB" 
+            "max_primary_shard_size": "3GB",
+            "max_age": "30d"
           }
         }
       },
