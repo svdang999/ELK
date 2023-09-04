@@ -89,5 +89,11 @@ GET _ilm/policy/camunda_policy
 # Checking current phase of the Index
 GET index_name/_ilm/explain
 
-
+# Increase max shards limit per node
+PUT /_cluster/settings
+{
+  "persistent" : {
+      "cluster.max_shards_per_node": "3000"
+  }
+}
 
