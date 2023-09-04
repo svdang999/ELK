@@ -20,8 +20,8 @@ PUT _ilm/policy/camunda-policy
   }
 }
 
-#2 Apply indices to lifecycle
-PUT operate-*/_settings 
+#2 Apply indices/indexes to the lifecycle
+PUT operate-variable-8.2.0_20*/_settings 
 {
   "index": {
     "lifecycle": {
