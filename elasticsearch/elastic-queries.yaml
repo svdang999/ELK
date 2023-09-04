@@ -45,8 +45,6 @@ PUT _ilm/policy/camunda_policy
   }
 }
 
-
-
 # Apply policy to multiple indexes
 PUT operate-event*/_settings 
 {
@@ -56,6 +54,33 @@ PUT operate-event*/_settings
     }
   }
 }
+
+
+
+# Create index template
+PUT _index_template/aurora-camunda-log
+{
+  "index_patterns": ["aurora-camunda-log*"],                 
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "index.lifecycle.name": "camunda_policy",      
+      "index.lifecycle.rollover_alias": "aurora-camunda-log"    
+    }
+  }
+}
+
+# Bootstrap initial index to template
+PUT aurora-camunda-log-000001
+{
+  "aliases": {
+    "aurora-camunda-log": {
+      "is_write_index": true
+    }
+  }
+}
+
 
 
 # List policy details
