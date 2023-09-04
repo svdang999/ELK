@@ -60,3 +60,8 @@ PUT operate-event*/_settings
 # List policy details
 GET _ilm/policy/camunda_policy
 
+# Checking current phase of the Index
+GET index_name/_ilm/explain
+
+
+
