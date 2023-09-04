@@ -1,0 +1,31 @@
+#1 Create lifecycle policy
+PUT _ilm/policy/camunda-policy
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "actions": {
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "delete": {
+        "min_age": "30d",
+        "actions": {
+          "delete": {} 
+        }
+      }
+    }
+  }
+}
+
+#2 Apply indices to lifecycle
+PUT operate-*/_settings 
+{
+  "index": {
+    "lifecycle": {
+      "name": "camunda-policy"
+    }
+  }
+}
