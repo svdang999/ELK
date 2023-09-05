@@ -1,9 +1,9 @@
 # Standalone Kibana instance's custom values using Helm chart : https://artifacthub.io/packages/helm/elastic/kibana
 ---
-elasticsearchHosts: "https://elasticsearch-master:9200"
-elasticsearchCertificateSecret: elasticsearch-master-certs
-elasticsearchCertificateAuthoritiesFile: ca.crt
-elasticsearchCredentialSecret: elasticsearch-master-credentials
+elasticsearchHosts: "http://elasticsearch-master.aurora:9200"
+# elasticsearchCertificateSecret: elasticsearch-master-certs
+# elasticsearchCertificateAuthoritiesFile: ca.crt
+# elasticsearchCredentialSecret: elasticsearch-master-credentials
 
 replicas: 1
 
@@ -13,6 +13,8 @@ replicas: 1
 extraEnvs:
   - name: "NODE_OPTIONS"
     value: "--max-old-space-size=1800"
+  # - name: "ELASTICSEARCH_HOSTS"
+  #   value: '["http://elasticsearch-master.aurora:9200"]'
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
