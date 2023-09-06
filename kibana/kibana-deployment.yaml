@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kb-deployment
+  name: kibana
   namespace: logging
   labels:
     app: kibana
@@ -27,8 +27,8 @@ spec:
             cpu: 500m
             memory: "512Mi"
         env:
-          - name: ELASTICSEARCH_URL
-            value: http://elasticsearch-master.aurora:9200
+          - name: ELASTICSEARCH_HOSTS
+            value: '["http://elasticsearch-master.aurora:9200"]'
         ports:
         - containerPort: 5601
 
