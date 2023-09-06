@@ -1,9 +1,7 @@
 # Standalone Kibana instance's custom values using Helm chart : https://artifacthub.io/packages/helm/elastic/kibana
+# Kibana version 7.17
 ---
-# elasticsearchHosts: "http://elasticsearch-master.aurora:9200"
-# elasticsearchCertificateSecret: elasticsearch-master-certs
-# elasticsearchCertificateAuthoritiesFile: ca.crt
-# elasticsearchCredentialSecret: elasticsearch-master-credentials
+elasticsearchHosts: "http://elasticsearch-master.aurora:9200"
 
 replicas: 1
 
@@ -13,8 +11,6 @@ replicas: 1
 extraEnvs:
   - name: "NODE_OPTIONS"
     value: "--max-old-space-size=1800"
-  - name: "ELASTICSEARCH_HOSTS"
-    value: '["http://elasticsearch-master.aurora:9200"]'
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
@@ -41,7 +37,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/kibana/kibana"
-imageTag: "8.5.1"
+imageTag: "7.17.3"
 imagePullPolicy: "IfNotPresent"
 
 # additionals labels
@@ -54,11 +50,11 @@ podAnnotations: {}
 
 resources:
   requests:
-    cpu: "256m"
+    cpu: "512m"
     memory: "512Mi"
   limits:
     cpu: "512m"
-    memory: "1000Mi"
+    memory: "1Gi"
 
 protocol: http
 
@@ -128,14 +124,16 @@ service:
   port: 5601
   nodePort: ""
   labels: {}
-  annotations: {}
-  # cloud.google.com/load-balancer-type: "Internal"
-  # service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
-  # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-  # service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
-  # service.beta.kubernetes.io/cce-load-balancer-internal-vpc: "true"
-  loadBalancerSourceRanges: []
-  # 0.0.0.0/0
+  annotations:
+    {}
+    # cloud.google.com/load-balancer-type: "Internal"
+    # service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+    # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    # service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+    # service.beta.kubernetes.io/cce-load-balancer-internal-vpc: "true"
+  loadBalancerSourceRanges:
+    []
+    # 0.0.0.0/0
   httpPortName: http
 
 ingress:
@@ -169,10 +167,15 @@ affinity: {}
 nameOverride: ""
 fullnameOverride: ""
 
-lifecycle: {}
-# preStop:
-#   exec:
-#     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
-# postStart:
-#   exec:
-#     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+lifecycle:
+  {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+
+# Deprecated - use only with versions < 6.6
+elasticsearchURL: "" # "http://elasticsearch-master:9200"
+
