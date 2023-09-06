@@ -9,3 +9,8 @@ helm repo add elastic https://helm.elastic.co
 helm repo update
 helm install kibana elastic/kibana -f custom-values.yaml
 ```
+
+# Steps to install Kibana on Kubernetes using deployment file
+```
+kubectl -n logging create -f kibana-deployment.yaml
+```
