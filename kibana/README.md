@@ -12,5 +12,5 @@ helm install kibana elastic/kibana -f custom-values.yaml
 
 # Steps to install Kibana on Kubernetes using deployment file
 ```
-kubectl -n logging create -f kibana-deployment.yaml
+kubectl -n logging apply -f kibana-deployment.yaml
 ```
