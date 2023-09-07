@@ -83,6 +83,7 @@ PUT aurora-ocr-ml-log-000001
 
 # Reindex the index to the new one 
 # https://opster.com/guides/elasticsearch/glossary/elasticsearch-reindex/
+# https://sematext.com/blog/elasticsearch-reindex/
 POST /_reindex?pretty
 {
   "source": {
