@@ -56,28 +56,40 @@ PUT operate-event*/_settings
 }
 
 
-
 # Create index template
-PUT _index_template/aurora-camunda-log
+PUT _index_template/aurora-ocr-ml-log
 {
-  "index_patterns": ["aurora-camunda-log*"],                 
+  "index_patterns": ["aurora-ocr-ml-log-v2*"],                 
   "template": {
     "settings": {
       "number_of_shards": 1,
       "number_of_replicas": 1,
-      "index.lifecycle.name": "camunda_policy",      
-      "index.lifecycle.rollover_alias": "aurora-camunda-log"    
+      "index.lifecycle.name": "aurora-log-policy",      
+      "index.lifecycle.rollover_alias": "aurora-ocr-ml-log-v2"    
     }
   }
 }
 
+
 # Bootstrap initial index to template
-PUT aurora-camunda-log-000001
+PUT aurora-ocr-ml-log-000001
 {
   "aliases": {
-    "aurora-camunda-log": {
+    "aurora-ocr-ml-log-v2": {
       "is_write_index": true
     }
+  }
+}
+
+# Reindex the index to the new one 
+# https://opster.com/guides/elasticsearch/glossary/elasticsearch-reindex/
+POST /_reindex?pretty
+{
+  "source": {
+    "index": "aurora-ocr-ml-log"
+  },
+  "dest": {
+    "index": "aurora-ocr-ml-log-000001"
   }
 }
 
