@@ -98,4 +98,5 @@ PUT /_cluster/settings
 }
 
 # Find index without alias
+# https://stackoverflow.com/questions/43113292/find-elasticsearch-indices-with-no-aliases
 GET _cluster/state?filter_path=metadata.indices.aurora-ocr-ml-log.aliases
