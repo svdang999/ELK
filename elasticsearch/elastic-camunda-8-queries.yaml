@@ -29,3 +29,55 @@ PUT operate-variable-8.2.0_20*/_settings
     }
   }
 }
+
+
+---
+# Steps to create & apply new index lifecycle 
+#1 Create lifecycle policy
+PUT _ilm/policy/aurora-log-policy
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "actions": {
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "delete": {
+        "min_age": "30d",
+        "actions": {
+          "delete": {} 
+        }
+      }
+    }
+  }
+}
+
+#2 Create index template
+PUT _index_template/aurora-log-prd
+{
+  "index_patterns": ["aurora-log-prd*"],                 
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "index.lifecycle.name": "aurora-log-policy",      
+      "index.lifecycle.rollover_alias": "aurora-log-prd-alias"    
+    }
+  }
+}
+
+
+#3 Bootstrap initial index to template
+PUT aurora-log-prd-000001
+{
+  "aliases": {
+    "aurora-log-prd-alias": {
+      "is_write_index": true
+    }
+  }
+}
+
+#4 config app point to new index
