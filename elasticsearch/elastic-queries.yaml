@@ -56,26 +56,28 @@ PUT operate-event*/_settings
 }
 
 
+# Production Aurora
 # Create index template
-PUT _index_template/aurora-ocr-ml-log
+# https://stackoverflow.com/questions/63076859/open-distro-for-elastic-search-source-alias-does-not-point-to-a-write-index
+PUT _index_template/aurora-log-prd
 {
-  "index_patterns": ["aurora-ocr-ml-log-v2*"],                 
+  "index_patterns": ["aurora-log-prd*"],                 
   "template": {
     "settings": {
       "number_of_shards": 1,
       "number_of_replicas": 1,
       "index.lifecycle.name": "aurora-log-policy",      
-      "index.lifecycle.rollover_alias": "aurora-ocr-ml-log-v2"    
+      "index.lifecycle.rollover_alias": "aurora-log-prd"    
     }
   }
 }
 
 
 # Bootstrap initial index to template
-PUT aurora-ocr-ml-log-000001
+PUT aurora-log-prd-000001
 {
   "aliases": {
-    "aurora-ocr-ml-log-v2": {
+    "aurora-log-prd": {
       "is_write_index": true
     }
   }
