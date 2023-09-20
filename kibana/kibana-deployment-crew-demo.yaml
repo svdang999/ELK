@@ -33,7 +33,7 @@ spec:
           - name: ELASTICSEARCH_USERNAME
             value: elastic
           - name: ELASTICSEARCH_PASSWORD
-            value: 1PQDNWjtbLZtHeTm
+            value: JbeiVCEreuLE7IO1
         ports:
         - containerPort: 5601
 
