@@ -46,10 +46,10 @@ esConfig:
     xpack.security.http.ssl.certificate_authorities: "/usr/share/elasticsearch/config/certs/ca.crt"
   
   secretMounts:
-   - name: elasticsearch-master-certs
-     secretName: elasticsearch-master-certs
-     path: /usr/share/elasticsearch/config/certs
-     defaultMode: 0755
+    - name: elasticsearch-master-certs
+      secretName: elasticsearch-master-certs
+      path: /usr/share/elasticsearch/config/certs
+      defaultMode: 0755
 
 createCert: false
 
