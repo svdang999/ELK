@@ -73,15 +73,6 @@ metadata:
   namespace: logging
 data:
   kibana.yml: |
-    server.name: kibana
-    server.host: "0.0.0.0"
-    server.basePath: "/api/v1/proxy/namespaces/kibana/services/kibana-logging"
     elasticsearch.url: https://elasticsearch-master.logging:9200
     elasticsearch.ssl.verificationMode: certificate
-    status.allowAnonymous: true
-    # xpack.monitoring.enabled: false
-    # xpack.monitoring.ui.container.elasticsearch.enabled: false
-    # xpack.monitoring.kibana.collection.enabled: false
-    # xpack.security.enabled: false
-    # logging.silent: false
-    # logging.quiet: false
+
