@@ -35,6 +35,12 @@ spec:
             value: elastic
           - name: ELASTICSEARCH_PASSWORD
             value: JbeiVCEreuLE7IO1
+          - name: XPACK_SECURITY_ENABLED
+            value: true
+          - name: ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES
+            value: '["config/certs/ca/ca.crt"]'
+          - name: ELASTICSEARCH_SSL_VERIFICATION_MODE
+            value: certificate
         ports:
         - containerPort: 5601
 
