@@ -31,13 +31,27 @@ esMajorVersion: ""
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
 esConfig:
-  elasticsearch.yml: | 
-    xpack.security.http.ssl.enabled: false
-    xpack.security.transport.ssl.enabled: false
-    xpack.security.enabled: false
+  elasticsearch.yml: |
+    xpack.security.enabled: true
+    path.data: /usr/share/elasticsearch/data
+    xpack.security.transport.ssl.enabled: true
+    xpack.security.transport.ssl.verification_mode: "certificate"
+    xpack.security.transport.ssl.client_authentication: required
+    xpack.security.http.ssl.enabled: true
+    xpack.security.transport.ssl.key: "/usr/share/elasticsearch/config/certs/tls.key"
+    xpack.security.transport.ssl.certificate: "/usr/share/elasticsearch/config/certs/tls.crt"
+    xpack.security.transport.ssl.certificate_authorities: "/usr/share/elasticsearch/config/certs/ca.crt"
+    xpack.security.http.ssl.key: "/usr/share/elasticsearch/config/certs/tls.key"
+    xpack.security.http.ssl.certificate: "/usr/share/elasticsearch/config/certs/tls.crt"
+    xpack.security.http.ssl.certificate_authorities: "/usr/share/elasticsearch/config/certs/ca.crt"
+  
+  secretMounts:
+   - name: elasticsearch-master-certs
+     secretName: elasticsearch-master-certs
+     path: /usr/share/elasticsearch/config/certs
+     defaultMode: 0755
 
-
-createCert: true
+createCert: false
 
 esJvmOptions: {}
 #  processors.options: |
@@ -356,3 +370,21 @@ networkPolicy:
 
 tests:
   enabled: true
+
+
+kibana:
+  elasticsearchHosts: https://elasticsearch-master.logging:9200
+  elasticsearch.ssl.certificateAuthorities: ["/usr/share/elasticsearch/config/certs/ca.crt"]
+  server.ssl.certificate: "/usr/share/elasticsearch/config/certs/tls.crt"
+  server.ssl.key: "/usr/share/elasticsearch/config/certs/tls.key"
+  server.ssl.enabled: true
+
+  kibanaConfig:
+    kibana.yml: |
+      server.publicBaseUrl: https://kibana.***.**
+
+  secretMounts:
+   - name: elasticsearch-master-certs
+     secretName: elasticsearch-master-certs
+     path: /usr/share/elasticsearch/config/certs
+     defaultMode: 0755
