@@ -77,10 +77,4 @@ data:
     server.basePath: "/api/v1/proxy/namespaces/kibana/services/kibana-logging"
     elasticsearch.url: https://elasticsearch.elasticsearch:9200
     elasticsearch.ssl.verificationMode: none
-    status.allowAnonymous: true
-    # xpack.monitoring.enabled: false
-    # xpack.monitoring.ui.container.elasticsearch.enabled: false
-    # xpack.monitoring.kibana.collection.enabled: false
-    # xpack.security.enabled: false
-    # logging.silent: false
-    # logging.quiet: false
+    status.allowAnonymous: true  
