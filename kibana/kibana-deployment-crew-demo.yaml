@@ -30,7 +30,7 @@ spec:
             memory: "512Mi"
         env:
           - name: ELASTICSEARCH_HOSTS
-            value: '["http://elasticsearch-master.logging:9200"]'
+            value: '["https://elasticsearch-master.logging:9200"]'
           - name: ELASTICSEARCH_USERNAME
             value: elastic
           - name: ELASTICSEARCH_PASSWORD
@@ -72,9 +72,8 @@ metadata:
 data:
   kibana.yml: |
     ---
-    server.name: kibana
-    server.host: "0.0.0.0"
-    server.basePath: "/api/v1/proxy/namespaces/kibana/services/kibana-logging"
-    elasticsearch.url: https://elasticsearch.elasticsearch:9200
-    elasticsearch.ssl.verificationMode: none
-    status.allowAnonymous: true  
+    elasticsearch.url: https://elasticsearch-master.logging:9200
+    elasticsearch.ssl.verificationMode: certificate
+    elasticsearch.username: elastic
+    elasticsearch.password: JbeiVCEreuLE7IO1
+    
