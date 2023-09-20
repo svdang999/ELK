@@ -37,7 +37,7 @@ esConfig: {}
 #  log4j2.properties: |
 #    key = value
 
-createCert: true
+createCert: false
 
 esJvmOptions: {}
 #  processors.options: |
@@ -59,7 +59,7 @@ envFrom: []
 
 # Disable it to use your own elastic-credential Secret.
 secret:
-  enabled: true
+  enabled: false
   password: "" # generated randomly if not defined
 
 # A list of secrets and their paths to mount inside the pod
@@ -190,7 +190,7 @@ podManagementPolicy: "Parallel"
 enableServiceLinks: true
 
 # protocol: https
-protocol: http #temporary use http
+protocol: http
 httpPort: 9200
 transportPort: 9300
 
