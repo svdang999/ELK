@@ -30,12 +30,11 @@ esMajorVersion: ""
 
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
-esConfig: {}
-#  elasticsearch.yml: |
-#    key:
-#      nestedkey: value
-#  log4j2.properties: |
-#    key = value
+# https://stackoverflow.com/questions/63339235/https-on-elasticsearch-helm-chart
+#otstrap check failure [1] of [1]: Transport SSL must be enabled if security is enabled. Please set [xpack.security.transport.ssl.enabled] to [true] or disable security by setting [xpack.security.enabled] to [false]
+esConfig:
+  elasticsearch.yml: |
+    xpack.security.enabled: false
 
 createCert: true
 
