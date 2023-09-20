@@ -30,19 +30,12 @@ esMajorVersion: ""
 
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
-# https://stackoverflow.com/questions/63339235/https-on-elasticsearch-helm-chart
-#otstrap check failure [1] of [1]: Transport SSL must be enabled if security is enabled. Please set [xpack.security.transport.ssl.enabled] to [true] or disable security by setting [xpack.security.enabled] to [false]
 esConfig:
-  elasticsearch.yml: |
-    xpack.security.enabled: false
-    xpack.security.transport.ssl.enabled: false
-    xpack.security.transport.ssl.verification_mode: certificate
-    xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+  elasticsearch.yml: | 
     xpack.security.http.ssl.enabled: false
-    xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.authc.realms.native.local.order: 0
+    xpack.security.transport.ssl.enabled: false
+    xpack.security.enabled: false
+
 
 createCert: true
 
@@ -196,7 +189,8 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: https
+# protocol: https
+protocol: http #temporary use http
 httpPort: 9200
 transportPort: 9300
 
