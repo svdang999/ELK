@@ -37,6 +37,14 @@ spec:
             value: JbeiVCEreuLE7IO1
         ports:
         - containerPort: 5601
+        volumeMounts:
+        - name: config
+          mountPath: /usr/share/kibana/config
+      volumes:
+      - name: "config"
+        configMap:
+          name: kibana-config
+      
 
 ---
 apiVersion: v1
@@ -53,3 +61,26 @@ spec:
   selector:
     app: kibana
   type: ClusterIP
+
+# https://gist.github.com/chancez/048a8e5ec6f5049ee3f2356aac6fa1d4
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana-config
+  namespace: kibana
+data:
+  kibana.yml: |
+    ---
+    server.name: kibana
+    server.host: "0.0.0.0"
+    server.basePath: "/api/v1/proxy/namespaces/kibana/services/kibana-logging"
+    elasticsearch.url: https://elasticsearch.elasticsearch:9200
+    elasticsearch.ssl.verificationMode: none
+    status.allowAnonymous: true
+    # xpack.monitoring.enabled: false
+    # xpack.monitoring.ui.container.elasticsearch.enabled: false
+    # xpack.monitoring.kibana.collection.enabled: false
+    # xpack.security.enabled: false
+    # logging.silent: false
+    # logging.quiet: false
