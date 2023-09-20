@@ -36,13 +36,13 @@ esConfig:
   elasticsearch.yml: |
     xpack.security.enabled: false
     xpack.security.transport.ssl.enabled: false
-    # xpack.security.transport.ssl.verification_mode: certificate
-    # xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    # xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.transport.ssl.verification_mode: certificate
+    xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
     xpack.security.http.ssl.enabled: false
-    # xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    # xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    # xpack.security.authc.realms.native.local.order: 0
+    xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.authc.realms.native.local.order: 0
 
 createCert: true
 
@@ -196,7 +196,7 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: https
+protocol: http
 httpPort: 9200
 transportPort: 9300
 
@@ -316,7 +316,7 @@ networkPolicy:
   ## elasticsearch-master-transport-client: "true"
 
   http:
-    enabled: true
+    enabled: false
     ## if explicitNamespacesSelector is not set or set to {}, only client Pods being in the networkPolicy's namespace
     ## and matching all criteria can reach the DB.
     ## But sometimes, we want the Pods to be accessible to clients from other namespaces, in this case, we can use this
