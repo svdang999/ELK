@@ -372,19 +372,19 @@ tests:
   enabled: true
 
 
-kibana:
-  elasticsearchHosts: https://elasticsearch-master.logging:9200
-  elasticsearch.ssl.certificateAuthorities: ["/usr/share/elasticsearch/config/certs/ca.crt"]
-  server.ssl.certificate: "/usr/share/elasticsearch/config/certs/tls.crt"
-  server.ssl.key: "/usr/share/elasticsearch/config/certs/tls.key"
-  server.ssl.enabled: true
+# kibana:
+#   elasticsearchHosts: https://elasticsearch-master.logging:9200
+#   elasticsearch.ssl.certificateAuthorities: ["/usr/share/elasticsearch/config/certs/ca.crt"]
+#   server.ssl.certificate: "/usr/share/elasticsearch/config/certs/tls.crt"
+#   server.ssl.key: "/usr/share/elasticsearch/config/certs/tls.key"
+#   server.ssl.enabled: true
 
-  kibanaConfig:
-    kibana.yml: |
-      server.publicBaseUrl: https://kibana.***.**
+#   kibanaConfig:
+#     kibana.yml: |
+#       server.publicBaseUrl: https://kibana.***.**
 
-  secretMounts:
-   - name: elasticsearch-master-certs
-     secretName: elasticsearch-master-certs
-     path: /usr/share/elasticsearch/config/certs
-     defaultMode: 0755
+#   secretMounts:
+#    - name: elasticsearch-master-certs
+#      secretName: elasticsearch-master-certs
+#      path: /usr/share/elasticsearch/config/certs
+#      defaultMode: 0755
