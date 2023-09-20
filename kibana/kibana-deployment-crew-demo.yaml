@@ -29,7 +29,11 @@ spec:
             memory: "512Mi"
         env:
           - name: ELASTICSEARCH_HOSTS
-            value: '["http://elasticsearch-master.logging:9200"]'
+            value: '["https://elasticsearch-master.logging:9200"]'
+          - name: ELASTICSEARCH_USERNAME
+            value: elastic
+          - name: ELASTICSEARCH_PASSWORD
+            value: 1PQDNWjtbLZtHeTm
         ports:
         - containerPort: 5601
 
