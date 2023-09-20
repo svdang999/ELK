@@ -64,7 +64,7 @@ spec:
     app: kibana
   type: ClusterIP
 
-
+# https://gist.github.com/chancez/048a8e5ec6f5049ee3f2356aac6fa1d4
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -73,7 +73,6 @@ metadata:
   namespace: logging
 data:
   kibana.yml: |
-    ---
     server.name: kibana
     server.host: "0.0.0.0"
     server.basePath: "/api/v1/proxy/namespaces/kibana/services/kibana-logging"
