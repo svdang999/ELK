@@ -30,7 +30,7 @@ spec:
             memory: "512Mi"
         env:
           - name: ELASTICSEARCH_HOSTS
-            value: '["https://elasticsearch-master.logging:9200"]'
+            value: '["http://elasticsearch-master.logging:9200"]'
           - name: ELASTICSEARCH_USERNAME
             value: elastic
           - name: ELASTICSEARCH_PASSWORD
