@@ -76,5 +76,5 @@ data:
     elasticsearch.hosts: ["https://elasticsearch-master.logging:9200"]
     elasticsearch.ssl.verificationMode: none
     elasticsearch.username: kibana_system
-    elasticsearch.password: E0elIR=kUbVka7f4AHZs # https://discuss.elastic.co/t/what-is-the-default-password-for-elasticsearch-8-alpha2/286119/2
+    elasticsearch.password: C52ZRgCzWvEQhtL22 # https://discuss.elastic.co/t/what-is-the-default-password-for-elasticsearch-8-alpha2/286119/2
     
