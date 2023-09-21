@@ -1,6 +1,6 @@
-###1 Install Elasticsearch 8.5.1
+### 1. Install Elasticsearch 8.5.1
 
-### Install Kibana version 8.5.1
+### 2. Install Kibana version 8.5.1
 
 ```
 https://artifacthub.io/packages/helm/elastic/kibana
@@ -10,7 +10,7 @@ https://artifacthub.io/packages/helm/elastic/kibana
 helm install kibana-crew elastic/kibana --set env.ELASTICSEARCH_URL=https://elasticsearch-master.logging:9200 --namespace logging
 ```
 
-# Verify results
+### 3. Verify results
 ```
 root@CPU016:~/GIT_Repos# helm -n logging list
 NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                   APP VERSION
