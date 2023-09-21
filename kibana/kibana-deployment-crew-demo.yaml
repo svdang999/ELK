@@ -1,5 +1,6 @@
 # Deployment file for crew aks demo
 # https://discuss.elastic.co/t/unable-to-retrieve-version-information-from-elasticsearch-nodes/319776/7
+# https://www.elastic.co/guide/en/cloud-on-k8s/master/k8s-deploy-kibana.html
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +20,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: kibana:7.17.3
+        image: kibana:8.10.1
         imagePullPolicy: Always
         resources:
           limits:
