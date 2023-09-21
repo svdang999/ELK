@@ -32,9 +32,10 @@ esMajorVersion: ""
 # such as elasticsearch.yml and log4j2.properties
 esConfig:
   elasticsearch.yml: | 
-    xpack.security.http.ssl.enabled: true
-    xpack.security.transport.ssl.enabled: true
     xpack.security.enabled: false
+    xpack.security.http.ssl.enabled: true
+    xpack.security.transport.ssl.enabled: true    
+    xpack.security.enrollment.enabled: true
 
 createCert: true
 
