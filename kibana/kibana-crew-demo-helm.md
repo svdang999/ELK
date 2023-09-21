@@ -17,3 +17,10 @@ NAME                    NAMESPACE       REVISION        UPDATED                 
 elasticsearch-crew      logging         7               2023-09-21 09:52:17.5749641 +0700 +07   deployed        elasticsearch-8.5.1     8.5.1
 kibana-crew             logging         1               2023-09-21 13:16:37.1492642 +0700 +07   deployed        kibana-8.5.1            8.5.1
 ```
+
+
+### Uninstall Kibana, then Elastic chart
+```
+helm -n logging uninstall kibana-crew
+helm -n logging uninstall elasticsearch-crew
+```
