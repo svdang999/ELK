@@ -1,4 +1,7 @@
 ### 1. Install Elasticsearch 8.5.1
+```
+https://github.com/svdang999/ELK/blob/main/elasticsearch/helm_elasticsearch_8_5_1/README.md
+```
 
 ### 2. Install Kibana version 8.5.1
 
