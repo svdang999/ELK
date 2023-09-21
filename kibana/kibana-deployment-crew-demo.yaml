@@ -75,5 +75,5 @@ data:
     elasticsearch.hosts: ["https://elasticsearch-master.logging:9200"]
     elasticsearch.ssl.verificationMode: certificate
     elasticsearch.username: elastic
-    elasticsearch.password: C52ZRgCzWvEQhtLl
+    elasticsearch.password: C52ZRgCzWvEQhtL22
     
