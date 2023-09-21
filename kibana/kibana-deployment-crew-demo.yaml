@@ -73,7 +73,7 @@ data:
   kibana.yml: |
     ---
     elasticsearch.hosts: ["https://elasticsearch-master.logging:9200"]
-    elasticsearch.ssl.verificationMode: certificate
+    elasticsearch.ssl.verificationMode: none
     elasticsearch.username: elastic
     elasticsearch.password: C52ZRgCzWvEQhtL22
     
