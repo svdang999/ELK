@@ -76,7 +76,7 @@ config:
   basePath: '/'
   restHistorySize: 50
   hosts:
-    - host: http://elasticsearch-master.logging:9200 # service.namespace:port
+    - host: https://elasticsearch-master.logging:9200 # service.namespace:port
       name: elasticsearch-master.logging
 
   # Secret used to sign session cookies. If empty it will be replaced with a
