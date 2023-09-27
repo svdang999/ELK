@@ -2,7 +2,7 @@
 # https://artifacthub.io/packages/helm/wiremind/cerebro
 # Default file https://github.com/wiremind/wiremind-helm-charts/blob/main/charts/cerebro/values.yaml
 # Syntax 
-# helm install cerebro-crew wiremind/cerebro --version 2.0.3 -f cerebro-crew-custom-values.yaml
+# helm install cerebro-crew wiremind/cerebro --version 2.0.3 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/cerebro-crew-custom-values.yaml
 
 replicaCount: 1
 revisionHistoryLimit: 3
