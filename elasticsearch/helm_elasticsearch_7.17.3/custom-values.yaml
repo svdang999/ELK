@@ -1,4 +1,4 @@
-# https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.3?modal=values
+# https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.1?modal=values
 ---
 clusterName: "elasticsearch"
 nodeGroup: "master"
@@ -39,9 +39,11 @@ esJvmOptions: {}
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
-#  - name: MY_ENVIRONMENT_VAR
-#    value: the_value_goes_here
+extraEnvs:
+  - name: ELASTIC_USERNAME
+    value: elastic
+  - name: ELASTIC_PASSWORD
+    value: WMBxdDEOw15xS2x2  
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -66,7 +68,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/elasticsearch/elasticsearch"
-imageTag: "7.17.3"
+imageTag: "7.17.1"
 imagePullPolicy: "IfNotPresent"
 
 podAnnotations:
@@ -135,25 +137,21 @@ persistence:
     enabled: false
   annotations: {}
 
-extraVolumes:
-  []
+extraVolumes: []
   # - name: extras
   #   emptyDir: {}
 
-extraVolumeMounts:
-  []
+extraVolumeMounts: []
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraContainers:
-  []
+extraContainers: []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
 
-extraInitContainers:
-  []
+extraInitContainers: []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
@@ -235,7 +233,7 @@ readinessProbe:
   timeoutSeconds: 5
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/7.17/cluster-health.html#request-params wait_for_status
-clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
+clusterHealthCheckParams: "wait_for_status=yellow&timeout=5s"
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -268,8 +266,7 @@ nameOverride: ""
 fullnameOverride: ""
 healthNameOverride: ""
 
-lifecycle:
-  {}
+lifecycle: {}
   # preStop:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
