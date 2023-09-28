@@ -30,8 +30,8 @@ clusterDeprecationIndexing: "false"
 # https://learn.liferay.com/w/dxp/using-search/installing-and-upgrading-a-search-engine/elasticsearch/securing-elasticsearch
 esConfig:
   elasticsearch.yml: |
-    xpack.security.enabled: true
-    xpack.security.transport.ssl.enabled: true
+    # xpack.security.enabled: true
+    # xpack.security.transport.ssl.enabled: true
     # xpack.security.http.ssl.enabled: true
     # xpack.security.transport.ssl.verification_mode: certificate
     # xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
@@ -46,11 +46,11 @@ esJvmOptions: {}
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
-  # - name: ELASTIC_USERNAME
-  #   value: elastic
-  # - name: ELASTIC_PASSWORD
-  #   value: 4ZiJCLVw4RJHWDUx
+extraEnvs:
+  - name: ELASTIC_USERNAME
+    value: elastic
+  - name: ELASTIC_PASSWORD
+    value: elastic
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
