@@ -29,8 +29,8 @@ clusterDeprecationIndexing: "false"
 # Ref https://stackoverflow.com/questions/70305348/how-to-install-elasticsearch-on-kubernetes-using-helm-3-nodes-and-production-s
 # https://learn.liferay.com/w/dxp/using-search/installing-and-upgrading-a-search-engine/elasticsearch/securing-elasticsearch
 esConfig: []
-  # elasticsearch.yml: |
-    # xpack.security.enabled: true
+  elasticsearch.yml: |
+    xpack.security.enabled: true
     # xpack.security.transport.ssl.enabled: true
     # xpack.security.transport.ssl.verification_mode: certificate
     # xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
