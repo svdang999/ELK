@@ -1,4 +1,5 @@
 # https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.1?modal=values
+
 ---
 clusterName: "elasticsearch"
 nodeGroup: "master"
@@ -43,7 +44,7 @@ extraEnvs:
   - name: ELASTIC_USERNAME
     value: elastic
   - name: ELASTIC_PASSWORD
-    value: WMBxdDEOw15xS2x2  
+    value: 4ZiJCLVw4RJHWDUx
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -71,8 +72,7 @@ image: "docker.elastic.co/elasticsearch/elasticsearch"
 imageTag: "7.17.1"
 imagePullPolicy: "IfNotPresent"
 
-podAnnotations:
-  {}
+podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
 
 # additionals labels
@@ -103,7 +103,7 @@ volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 10Gi
+      storage: 30Gi
 
 rbac:
   create: false
@@ -266,7 +266,8 @@ nameOverride: ""
 fullnameOverride: ""
 healthNameOverride: ""
 
-lifecycle: {}
+lifecycle:
+  {}
   # preStop:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
