@@ -1,3 +1,4 @@
+# https://artifacthub.io/packages/helm/elastic/kibana/7.17.1
 ---
 elasticsearchHosts: "http://elasticsearch-master:9200"
 
