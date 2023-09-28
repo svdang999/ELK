@@ -45,11 +45,11 @@ esJvmOptions: {}
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs:
-  - name: ELASTIC_USERNAME
-    value: elastic
-  - name: ELASTIC_PASSWORD
-    value: 4ZiJCLVw4RJHWDUx
+extraEnvs: []
+  # - name: ELASTIC_USERNAME
+  #   value: elastic
+  # - name: ELASTIC_PASSWORD
+  #   value: 4ZiJCLVw4RJHWDUx
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -61,11 +61,10 @@ envFrom: []
 # A list of secrets and their paths to mount inside the pod
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
-secretMounts: []
-#  - name: elastic-certificates
-#    secretName: elastic-certificates
-#    path: /usr/share/elasticsearch/config/certs
-#    defaultMode: 0755
+secretMounts:
+  - name: elastic-certificates
+    secretName: elastic-certificates
+    path: /usr/share/elasticsearch/config/certs
 
 hostAliases: []
 #- ip: "127.0.0.1"
