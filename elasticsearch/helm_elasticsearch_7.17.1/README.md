@@ -3,68 +3,40 @@
 ```
 https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.1
 ```
-
+### Without any authentication/SSL/HTTPS
 ```
 helm repo add elastic https://helm.elastic.co
 helm -n logging install my-elasticsearch elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values.yaml
 ```
 
-### Generate certificate steps
-### Ref 
+### Setup HTTPS/Certificate/Authentication for Elasticsearch  
+1. Install Elastic
 ```
-https://discuss.elastic.co/t/im-struggling-set-up-the-minimal-security-and-the-configure-the-tls/321851
+helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 --set replicas=1 --set minimumMasterNodes=1
 ```
 
-1. Create the p12
+2. Create the p12
 ```
-elasticsearch@elasticsearch-master-0:~$bin/elasticsearch-certutil cert -out elastic-certificates.p12 -pass ""
-ls -lsrht /usr/share/elasticsearch/elastic-certificates.p12
+bin/elasticsearch-certutil cert -out elastic-certificates.p12 -pass ""
 ```
+
 3. Copy the p12 to the local computer
 ```
 kubectl -n logging cp elasticsearch-master-0:/usr/share/elasticsearch/elastic-certificates.p12 elastic-certificates.p12
-
-PS C:\Users\son.dang> ls | findstr.exe "elastic"
--a----         9/29/2023   7:19 PM           3596 elastic-certificates.p12
 ```
 
 4. Create a K8S Secrets
 ```
 kubectl -n logging create secret generic elastic-certificates --from-file=elastic-certificates.p12
-kubectl -n logging apply -f secrets.yaml 
-```
-5. Stop Elasticsearch and Kibana
-```
-helm -n logging uninstall kibana
-helm -n logging uninstall elasticsearch
-```
-
-6. Edit Elasticsearch values.yaml
-```
-elasticsearch.yaml |
-    xpack.security.enabled: true
-    xpack.security.transport.ssl.enabled: true
-    xpack.security.transport.ssl.verification_mode: none 
-    xpack.security.http.ssl.verification_mode: none
-    xpack.security.transport.ssl.client_authentication: required
-    xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.http.ssl.enabled: true
-    xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-    xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12 
-protocol: https
-secretMounts:
-  - name: elastic-certificates
-    secretName: elastic-certificates
-    path: /usr/share/elasticsearch/config/certs
+kubectl -n logging apply -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/secrets.yaml
 ```
 	
-7. Restart Elasticsearch
+5. Upgrade Elasticsearch
 ```
 helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-auth.yaml
 ```
 	
-8. Set up Passwords
+### Set up Elasticsearch passwords
 ```
 bin/elasticsearch-setup-passwords auto
 ```
