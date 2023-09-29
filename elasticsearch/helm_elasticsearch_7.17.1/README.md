@@ -68,3 +68,7 @@ helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.1
 ```
 bin/elasticsearch-setup-passwords auto
 ```
+9. Create password secret for user elastic/kibana 
+```
+kubectl -n logging apply -f secret.yaml
+```
