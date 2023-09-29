@@ -1,17 +1,13 @@
 ### Deployment 
-
 ```
 https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.1
 ```
-### Without any authentication/SSL/HTTPS
-```
-helm repo add elastic https://helm.elastic.co
-helm -n logging install my-elasticsearch elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values.yaml
-```
 
 ### Setup HTTPS/Certificate/Authentication for Elasticsearch  
-1. Install Elastic
+1. Install Elastic basic (Without any authentication/SSL/HTTPS)
 ```
+helm repo add elastic https://helm.elastic.co
+helm repo update
 helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 --set replicas=1 --set minimumMasterNodes=1
 ```
 
@@ -33,7 +29,7 @@ kubectl -n logging apply -f https://raw.githubusercontent.com/svdang999/ELK/main
 	
 5. Upgrade Elasticsearch
 ```
-helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-auth.yaml
+helm -n logging upgrade elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-auth.yaml
 ```
 	
 ### Set up Elasticsearch passwords
