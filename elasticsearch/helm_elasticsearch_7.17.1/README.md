@@ -10,7 +10,10 @@ helm -n logging install my-elasticsearch elastic/elasticsearch --version 7.17.1 
 ```
 
 ### Generate certificate steps
-### Ref https://discuss.elastic.co/t/im-struggling-set-up-the-minimal-security-and-the-configure-the-tls/321851
+### Ref 
+```
+https://discuss.elastic.co/t/im-struggling-set-up-the-minimal-security-and-the-configure-the-tls/321851
+```
 
 1. Create the p12
 ```
@@ -19,7 +22,10 @@ ls -lsrht /usr/share/elasticsearch/elastic-certificates.p12
 ```
 3. Copy the p12 to the local computer
 ```
-kubectl cp elasticsearch-master-0:elastic-certificates.p12 elastic-certificates.p12
+kubectl -n logging cp elasticsearch-master-0:/usr/share/elasticsearch/elastic-certificates.p12 elastic-certificates.p12
+
+PS C:\Users\son.dang> ls | findstr.exe "elastic"
+-a----         9/29/2023   7:19 PM           3596 elastic-certificates.p12
 ```
 
 4. Create a K8S Secret
