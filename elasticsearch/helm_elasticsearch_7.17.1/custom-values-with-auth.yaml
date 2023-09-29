@@ -51,15 +51,15 @@ esJvmOptions: {}
 # syntax here
 extraEnvs:
   - name: ELASTIC_USERNAME
-      valueFrom:
-        secretKeyRef:
-          name: es-credentials
-          key: ELASTIC_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: es-credentials
+        key: ELASTIC_USERNAME
   - name: ELASTIC_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: es-credentials
-          key: ELASTIC_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: es-credentials
+        key: ELASTIC_PASSWORD
 
 
 
