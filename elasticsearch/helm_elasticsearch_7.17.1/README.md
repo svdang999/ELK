@@ -30,12 +30,13 @@ PS C:\Users\son.dang> ls | findstr.exe "elastic"
 
 4. Create a K8S Secret
 ```
-kubectl create secret generic elastic-certificates --from-file=elastic-certificates.p12
+kubectl -n logging create secret generic elastic-certificates --from-file=elastic-certificates.p12
+secret/elastic-certificates created
 ```
 5. Stop Elasticsearch and Kibana
 ```
-helm uninstall elasticsearch
-helm uninstall kibana
+helm -n logging uninstall kibana
+helm -n logging uninstall elasticsearch
 ```
 
 6. Edit Elasticsearch values.yaml
@@ -60,7 +61,7 @@ secretMounts:
 	
 7. Restart Elasticsearch
 ```
-helm install elasticsearch
+helm -n logging install elasticsearch
 ```
 	
 8. Set up Passwords
