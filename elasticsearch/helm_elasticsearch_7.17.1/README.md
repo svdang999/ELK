@@ -57,7 +57,7 @@ secretMounts:
 helm install elasticsearch
 ```
 	
-9. Set up Passwords
+8. Set up Passwords
 ```
 bin/elasticsearch-setup-passwords auto
 ```
