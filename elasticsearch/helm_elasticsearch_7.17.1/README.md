@@ -28,10 +28,10 @@ PS C:\Users\son.dang> ls | findstr.exe "elastic"
 -a----         9/29/2023   7:19 PM           3596 elastic-certificates.p12
 ```
 
-4. Create a K8S Secret
+4. Create a K8S Secrets
 ```
 kubectl -n logging create secret generic elastic-certificates --from-file=elastic-certificates.p12
-secret/elastic-certificates created
+kubectl -n logging apply -f secrets.yaml 
 ```
 5. Stop Elasticsearch and Kibana
 ```
@@ -68,7 +68,4 @@ helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.1
 ```
 bin/elasticsearch-setup-passwords auto
 ```
-9. Create password secret for user elastic/kibana 
-```
-kubectl -n logging apply -f secret.yaml
-```
+
