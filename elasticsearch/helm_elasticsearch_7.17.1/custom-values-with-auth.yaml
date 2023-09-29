@@ -49,16 +49,26 @@ esJvmOptions: {}
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
+extraEnvs:
+  - name: "ELASTIC_USERNAME"
+      valueFrom:
+        secretKeyRef:
+          name: es-credentials
+          key: ELASTIC_USERNAME
+  - name: "ELASTIC_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          name: es-credentials
+          key: ELASTIC_PASSWORD
   # - name: ELASTIC_USERNAME
   #   value: elastic
   # - name: ELASTIC_PASSWORD
   #   value: elastic
 
 # Allows you to load environment variables from kubernetes secret or config map
-envFrom: []
-# - secretRef:
-#     name: env-secret
+envFrom:
+- secretRef:
+    name: es-credentials # secrets.yaml
 # - configMapRef:
 #     name: config-map
 
