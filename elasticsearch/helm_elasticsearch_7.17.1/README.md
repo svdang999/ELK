@@ -61,7 +61,7 @@ secretMounts:
 	
 7. Restart Elasticsearch
 ```
-helm -n logging install elasticsearch
+helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-auth.yaml
 ```
 	
 8. Set up Passwords
