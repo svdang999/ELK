@@ -10,39 +10,54 @@ helm -n logging install my-elasticsearch elastic/elasticsearch --version 7.17.1 
 ```
 
 ### Generate certificate steps
+### Ref https://discuss.elastic.co/t/im-struggling-set-up-the-minimal-security-and-the-configure-the-tls/321851
 
-```
 1. Create the p12
-	elasticsearch@elasticsearch-master-0:~$ bin/elasticsearch-certutil cert -out -- elastic-certificates.p12 -pass ""
-2. Copy the p12 to the local computer
-	kubectl cp elasticsearch-master-0:elastic-certificates.p12 elastic-certificates.p12
-3. Create a K8S Secret
-	kubectl create secret generic elastic-certificates --from-file=elastic-certificates.p12
-4. Stop Elasticsearch and Kibana
-	helm uninstall elasticsearch
-	equal with Kibana
-5. Edit Elasticsearch values.yaml
-	elasticsearch.yaml |
-	    xpack.security.enabled: true
-	    xpack.security.transport.ssl.enabled: true
-	    xpack.security.transport.ssl.verification_mode: none 
-	    xpack.security.http.ssl.verification_mode: none
-	    xpack.security.transport.ssl.client_authentication: required
-	    xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-	    xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-	    xpack.security.http.ssl.enabled: true
-	    xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-	    xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12 
-	protocol: https
-	secretMounts:
-	  - name: elastic-certificates
-	    secretName: elastic-certificates
-	    path: /usr/share/elasticsearch/config/certs
-	
-6. Restart Elasticsearch
-	helm install elasticsearch .
-	
-7. Set up Passwords
-![image](https://github.com/svdang999/ELK/assets/101574223/627534d5-105e-4085-9012-55e3138d6281)
+```
+elasticsearch@elasticsearch-master-0:~$bin/elasticsearch-certutil cert -out elastic-certificates.p12 -pass ""
+ls -lsrht /usr/share/elasticsearch/elastic-certificates.p12
+```
+3. Copy the p12 to the local computer
+```
+kubectl cp elasticsearch-master-0:elastic-certificates.p12 elastic-certificates.p12
+```
 
+4. Create a K8S Secret
+```
+kubectl create secret generic elastic-certificates --from-file=elastic-certificates.p12
+```
+5. Stop Elasticsearch and Kibana
+```
+helm uninstall elasticsearch
+helm uninstall kibana
+```
+
+7. Edit Elasticsearch values.yaml
+```
+elasticsearch.yaml |
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    xpack.security.transport.ssl.verification_mode: none 
+    xpack.security.http.ssl.verification_mode: none
+    xpack.security.transport.ssl.client_authentication: required
+    xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.http.ssl.enabled: true
+    xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12 
+protocol: https
+secretMounts:
+  - name: elastic-certificates
+    secretName: elastic-certificates
+    path: /usr/share/elasticsearch/config/certs
+```
+	
+8. Restart Elasticsearch
+```
+helm install elasticsearch
+```
+	
+9. Set up Passwords
+```
+bin/elasticsearch-setup-passwords auto
 ```
