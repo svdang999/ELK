@@ -32,7 +32,7 @@ helm uninstall elasticsearch
 helm uninstall kibana
 ```
 
-7. Edit Elasticsearch values.yaml
+6. Edit Elasticsearch values.yaml
 ```
 elasticsearch.yaml |
     xpack.security.enabled: true
@@ -52,7 +52,7 @@ secretMounts:
     path: /usr/share/elasticsearch/config/certs
 ```
 	
-8. Restart Elasticsearch
+7. Restart Elasticsearch
 ```
 helm install elasticsearch
 ```
