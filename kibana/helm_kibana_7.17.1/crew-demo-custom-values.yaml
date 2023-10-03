@@ -2,7 +2,7 @@
 # https://artifacthub.io/packages/helm/elastic/kibana/7.17.1
 # helm -n logging install kibana-crew-7 elastic/kibana --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/kibana/helm_kibana_7.17.1/crew-demo-custom-values.yaml
 ---
-elasticsearchHosts: "http://elasticsearch-master.demo:9200"
+elasticsearchHosts: "http://elasticsearch-master.logging:9200"
 
 replicas: 1
 
@@ -178,4 +178,4 @@ lifecycle:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
 
 # Deprecated - use only with versions < 6.6
-elasticsearchURL: "" # "http://elasticsearch-master.demo:9200"
+elasticsearchURL: "" # "http://elasticsearch-master.logging:9200"
