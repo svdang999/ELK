@@ -1,6 +1,6 @@
 
 # https://artifacthub.io/packages/helm/elastic/kibana/7.17.1
-# helm -n logging install kibana-crew-7 elastic/kibana --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/kibana/helm-kibana-7.17.1-custom-values.yaml
+# helm -n logging install kibana-crew-7 elastic/kibana --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/kibana/helm_kibana_7.17.1/crew-demo-custom-values.yaml
 ---
 elasticsearchHosts: "http://elasticsearch-master.demo:9200"
 
