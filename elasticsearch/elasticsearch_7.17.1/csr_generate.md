@@ -1,3 +1,5 @@
+### 1. Generate a Certificate Signing Request (CSR)
+
 ```
 elasticsearch@elasticsearch-master-0:~$ ./bin/elasticsearch-certutil http
 
@@ -136,4 +138,9 @@ What filename should be used for the output zip file? [/usr/share/elasticsearch/
 
 Zip file written to /usr/share/elasticsearch/elasticsearch-ssl-http.zip
 elasticsearch@elasticsearch-master-0:~$
+```
+
+### 2. Copy the generated zip file to the local computer
+```
+kubectl -n logging cp elasticsearch-master-0:/usr/share/elasticsearch/elasticsearch-ssl-http.zip elasticsearch-ssl-http.zip
 ```
