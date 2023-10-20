@@ -18,11 +18,11 @@ https://github.com/svdang999/ELK/blob/main/elasticsearch/elasticsearch_7.17.1/cs
 
 3. Create a K8S Secrets
 ```
-kubectl -n logging create secret generic elastic-certificates --from-file=elastic-certificates.p12
+kubectl -n logging create secret generic elastic-certificates-http --from-file=http.p12
 kubectl -n logging apply -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/secrets.yaml
 ```
 	
 4. Upgrade Elasticsearch
 ```
-helm -n logging upgrade elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-auth.yaml
+helm -n logging upgrade elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/elasticsearch/helm_elasticsearch_7.17.1/custom-values-with-ca.yaml
 ```
