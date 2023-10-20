@@ -74,8 +74,8 @@ envFrom:
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
 secretMounts:
-  - name: http
-    secretName: http
+  - name: elastic-certificates-http
+    secretName: elastic-certificates-http
     path: /usr/share/elasticsearch/config/certs
 
 hostAliases: []
@@ -98,7 +98,7 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "1000m"
+    cpu: "64m"
     memory: "2Gi"
   limits:
     cpu: "1000m"
