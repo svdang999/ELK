@@ -68,6 +68,9 @@ healthCheckPath: "/app/kibana"
 
 kibanaConfig:
   kibana.yml: |
+    elasticsearch.username: "elastic"
+    elasticsearch.password: "s5xPVCrChHQjhcRbvdi8"
+    
     elasticsearch.ssl:
       certificateAuthorities: /etc/ssl/certs/elasticsearch-ca.pem
       verificationMode: certificate
