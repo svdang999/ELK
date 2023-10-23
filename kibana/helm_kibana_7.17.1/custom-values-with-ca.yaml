@@ -83,7 +83,7 @@ protocol: https
 secretMounts:
   - name: elastic-certificate-pem
     secretName: elastic-certificate-pem
-    path: /usr/share/kibana/config/certs
+    path: /usr/share/kibana/config/certs/elasticsearch-ca.pem
 
 
 # If Pod Security Policy in use it may be required to specify security context as well as service account
