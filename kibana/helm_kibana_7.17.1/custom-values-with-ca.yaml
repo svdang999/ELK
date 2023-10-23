@@ -69,7 +69,7 @@ healthCheckPath: "/app/kibana"
 kibanaConfig:
   kibana.yml: |
     elasticsearch.ssl:
-      certificateAuthorities: /usr/share/kibana/config/certs/elasticsearch-ca.pem
+      certificateAuthorities: /etc/ssl/certs/elasticsearch-ca.pem
       verificationMode: certificate
     
     # server.ssl:
