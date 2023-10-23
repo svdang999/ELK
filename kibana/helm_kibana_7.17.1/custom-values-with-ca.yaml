@@ -65,22 +65,18 @@ healthCheckPath: "/app/kibana"
 # Allows you to add any config files in /usr/share/kibana/config/
 # such as kibana.yml
 ## https://www.lisenet.com/2022/deploy-elasticsearch-and-kibana-on-kubernetes-with-helm/
-kibanaConfig:
-  kibana.yml: |
-    elasticsearch.username: "elastic"
-    elasticsearch.password: "s5xPVCrChHQjhcRbvdi8"
 
 kibanaConfig:
   kibana.yml: |
-    server.ssl:
-      enabled: true
-      key: /usr/share/kibana/config/certs/kibana/kibana.key
-      certificate: /usr/share/kibana/config/certs/kibana/kibana.crt
-    xpack.security.encryptionKey: something_at_least_32_characters
-    
     elasticsearch.ssl:
       certificateAuthorities: /usr/share/kibana/config/certs/elasticsearch-ca.pem
       verificationMode: certificate
+    
+    # server.ssl:
+    #   enabled: true
+    #   key: /usr/share/kibana/config/certs/kibana/kibana.key
+    #   certificate: /usr/share/kibana/config/certs/kibana/kibana.crt
+    #   xpack.security.encryptionKey: something_at_least_32_characters
 
 protocol: https
 
