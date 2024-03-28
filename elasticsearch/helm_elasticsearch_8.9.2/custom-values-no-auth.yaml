@@ -513,11 +513,9 @@ master:
   ## @param master.resources.requests The requested resources for elasticsearch containers
   ##
   resources:
-    ## Example:
-    ## limits:
-    ##    cpu: 500m
-    ##    memory: 1Gi
-    limits: {}
+    limits:
+      cpu: 500m
+      memory: 1Gi
     ## Examples:
     ## requests:
     ##    cpu: 250m
@@ -833,7 +831,7 @@ data:
     limits: {}
     requests:
       cpu: 25m
-      memory: 2048Mi
+      memory: 512Mi
   ## @param data.heapSize Elasticsearch data node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1145,7 +1143,7 @@ coordinating:
     limits: {}
     requests:
       cpu: 25m
-      memory: 256Mi
+      memory: 64Mi
   ## @param coordinating.heapSize Elasticsearch coordinating node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
@@ -1426,7 +1424,7 @@ ingest:
     limits: {}
     requests:
       cpu: 25m
-      memory: 256Mi
+      memory: 64Mi
   ## @param ingest.heapSize Elasticsearch ingest-only node heap size.
   ## Note: The recommended heapSize is half of the container's memory.
   ## If omitted, it will be automatically set.
