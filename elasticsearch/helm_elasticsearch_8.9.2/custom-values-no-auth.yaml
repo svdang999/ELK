@@ -3,6 +3,7 @@
 # https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch/#how-to-deploy-a-single-node
 # https://artifacthub.io/packages/helm/bitnami/elasticsearch/19.11.2
 # No auth for Kibana <-> Elasticsearch version
+# helm -n logging install elasticsearch-dev oci://registry-1.docker.io/bitnamicharts/elasticsearch -f custom-values-no-auth.yaml --version 19.11.2
 
 ## @section Global parameters
 ## Global Docker image parameters
