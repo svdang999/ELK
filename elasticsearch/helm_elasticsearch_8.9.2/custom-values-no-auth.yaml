@@ -2264,13 +2264,21 @@ sysctlImage:
 ## @param kibana.elasticsearch.port Port to connect Kibana and ES instance. Used to generate the URL
 ##
 kibana:
+  resources:
+    limits:
+      cpu: 128m
+      memory: 512Mi
+    requests:
+      cpu: 25m
+      memory: 64Mi
+      
   elasticsearch:
     security:
       auth:
         enabled: false
         # default in the elasticsearch chart is elastic
         kibanaUsername: "elastic"
-        kibanaPassword: "123456"
+        kibanaPassword: ""
       tls:
         # Instruct kibana to connect to elastic over https
         enabled: false
