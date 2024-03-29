@@ -2267,7 +2267,7 @@ kibana:
   elasticsearch:
     security:
       auth:
-        enabled: true
+        enabled: false
         # default in the elasticsearch chart is elastic
         kibanaUsername: "elastic"
         kibanaPassword: "123456"
