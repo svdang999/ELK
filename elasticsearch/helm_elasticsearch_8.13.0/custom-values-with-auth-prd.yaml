@@ -874,8 +874,8 @@ master:
   ##
   autoscaling:
     enabled: false
-    minReplicas: 1
-    maxReplicas: 5
+    minReplicas: 3
+    maxReplicas: 11
     targetCPU: ""
     targetMemory: ""
 ## @section Data-only nodes parameters
@@ -2732,8 +2732,8 @@ kibana:
         elasticsearchPasswordSecret: elasticsearch-8-aurora-prd
         # default in the elasticsearch chart is elastic
         createSystemUser: true
-        kibanaUsername: "elastic"
-        kibanaPassword: "Yz!G95*iEiX$7X"
+        kibanaUsername: "kibana_system"
+        kibanaPassword: "z!G5*iEiX7X"
       tls:
         # Instruct kibana to connect to elastic over https
         enabled: true
