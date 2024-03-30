@@ -1,7 +1,7 @@
 # Copyright VMware, Inc.
 # SPDX-License-Identifier: APACHE-2.0
 # https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch/#how-to-deploy-a-single-node
-# https://artifacthub.io/packages/helm/bitnami/elasticsearch/19.11.2
+# https://artifacthub.io/packages/helm/bitnami/elasticsearch/20.0.1
 # SSL/TLS ElasticSearch/Kibana/Coordinating Enabled
 # https://medium.com/@domainadmin/installing-elasticsearch-on-gke-with-the-bitnami-helm-chart-part-1-a8c24686b7e1
 
