@@ -851,7 +851,7 @@ master:
       - ReadWriteOnce
     ## @param master.persistence.size Persistent Volume Size
     ##
-    size: 8Gi
+    size: 64Gi
   ## Pods Service Account
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   ## @param master.serviceAccount.create Specifies whether a ServiceAccount should be created
@@ -874,15 +874,15 @@ master:
   ##
   autoscaling:
     enabled: false
-    minReplicas: 3
-    maxReplicas: 11
+    minReplicas: 1
+    maxReplicas: 5
     targetCPU: ""
     targetMemory: ""
 ## @section Data-only nodes parameters
 data:
   ## @param data.replicaCount Number of data-only replicas to deploy
   ##
-  replicaCount: 2
+  replicaCount: 0
   ## @param data.extraRoles Append extra roles to the node role
   ##
   extraRoles: []
@@ -1642,7 +1642,7 @@ ingest:
   enabled: false
   ## @param ingest.replicaCount Number of ingest-only replicas to deploy
   ##
-  replicaCount: 2
+  replicaCount: 1
   ## @param ingest.extraRoles Append extra roles to the node role
   ##
   extraRoles: []
