@@ -2,7 +2,13 @@
 # SPDX-License-Identifier: APACHE-2.0
 # https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch/#how-to-deploy-a-single-node
 # https://artifacthub.io/packages/helm/bitnami/elasticsearch/19.11.2
-# helm -n logging install elasticsearch-aurora-prd oci://registry-1.docker.io/bitnamicharts/elasticsearch -f custom-values-with-auth-prd.yaml --version 19.11.2
+# SSL/TLS ElasticSearch/Kibana/Coordinating Enabled
+# https://medium.com/@domainadmin/installing-elasticsearch-on-gke-with-the-bitnami-helm-chart-part-1-a8c24686b7e1
+
+# helm -n logging install elasticsearch-8-aurora-prd oci://registry-1.docker.io/bitnamicharts/elasticsearch --version 19.11.2 -f custom-values-with-auth-prd.yaml
+# helm -n logging upgrade elasticsearch-8-aurora-prd oci://registry-1.docker.io/bitnamicharts/elasticsearch --version 19.11.2 -f custom-values-with-auth-prd.yaml
+# helm -n logging list
+# helm -n logging uninstall elasticsearch-8-aurora-prd
 
 ## @section Global parameters
 ## Global Docker image parameters
@@ -225,7 +231,7 @@ security:
   ## @param security.elasticPassword Password for 'elastic' user
   ## Ref: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch#security
   ##
-  elasticPassword: "123456"
+  elasticPassword: "xxx"
   ## @param security.existingSecret Name of the existing secret containing the Elasticsearch password and
   ##
   existingSecret: ""
@@ -516,9 +522,8 @@ master:
   ## @param master.resources.requests The requested resources for elasticsearch containers
   ##
   resources:
-    limits:
-      cpu: 512m
-      memory: 1Gi
+    limits:      
+      memory: 2Gi
     ## Examples:
     ## requests:
     ##    cpu: 250m
@@ -590,6 +595,7 @@ master:
   ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
   ## NOTE: `master.podAffinityPreset`, `master.podAntiAffinityPreset`, and `master.nodeAffinityPreset` will be ignored when it's set
   ##
+  # affinity: {}
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -1162,7 +1168,7 @@ coordinating:
   ## Example:
   ##   heapSize: 128m
   ##
-  heapSize: 128m
+  heapSize: 256m
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   ## @param coordinating.podSecurityContext.enabled Enabled coordinating-only pods' Security Context
@@ -1222,15 +1228,16 @@ coordinating:
   ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
   ## NOTE: `coordinating.podAffinityPreset`, `coordinating.podAntiAffinityPreset`, and `coordinating.nodeAffinityPreset` will be ignored when it's set
   ##
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: agentpool
-            operator: In
-            values:
-            - pool1pay
+  affinity: {}
+  # affinity:
+    # nodeAffinity:
+      # requiredDuringSchedulingIgnoredDuringExecution:
+        # nodeSelectorTerms:
+        # - matchExpressions:
+          # - key: agentpool
+            # operator: In
+            # values:
+            # - pool1pay
   ## @param coordinating.nodeSelector Node labels for coordinating-only pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
@@ -2290,30 +2297,31 @@ kibana:
     requests:
       cpu: 25m
       memory: 64Mi
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: agentpool
-            operator: In
-            values:
-            - pool1pay
+  affinity: {}
+  # affinity:
+    # nodeAffinity:
+      # requiredDuringSchedulingIgnoredDuringExecution:
+        # nodeSelectorTerms:
+        # - matchExpressions:
+          # - key: agentpool
+            # operator: In
+            # values:
+            # - pool1pay
   elasticsearch:
     security:
       auth:
         enabled: true
-        elasticsearchPasswordSecret: elasticsearch-aurora-prd
+        elasticsearchPasswordSecret: elasticsearch-8-aurora-prd
         # default in the elasticsearch chart is elastic
         createSystemUser: true
         kibanaUsername: "elastic"
-        kibanaPassword: "123456"
+        kibanaPassword: "xxx"
       tls:
         # Instruct kibana to connect to elastic over https
         enabled: true
         # Bit of a catch 22, as you will need to know the name upfront of your release
         # https://github.com/bitnami/charts/issues/7928#issuecomment-952076507
-        existingSecret: elasticsearch-aurora-prd-coordinating-crt # or just 'elasticsearch-coordinating-crt' if the release name happens to be 'elasticsearch'
+        existingSecret: elasticsearch-8-aurora-prd-coordinating-crt # or just 'elasticsearch-coordinating-crt' if the release name happens to be 'elasticsearch'
         # As the certs are auto-generated, they are pemCerts so set to true
         usePemCerts: true
     hosts:
