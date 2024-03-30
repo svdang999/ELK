@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 # https://github.com/bitnami/charts/tree/main/bitnami/elasticsearch/#how-to-deploy-a-single-node
 # https://artifacthub.io/packages/helm/bitnami/elasticsearch/19.11.2
+# helm -n logging install elasticsearch-aurora-prd oci://registry-1.docker.io/bitnamicharts/elasticsearch -f custom-values-with-auth-prd.yaml --version 19.11.2
 
 ## @section Global parameters
 ## Global Docker image parameters
@@ -2302,7 +2303,7 @@ kibana:
     security:
       auth:
         enabled: true
-        elasticsearchPasswordSecret: elasticsearch-dev
+        elasticsearchPasswordSecret: elasticsearch-aurora-prd
         # default in the elasticsearch chart is elastic
         createSystemUser: true
         kibanaUsername: "elastic"
@@ -2312,7 +2313,7 @@ kibana:
         enabled: true
         # Bit of a catch 22, as you will need to know the name upfront of your release
         # https://github.com/bitnami/charts/issues/7928#issuecomment-952076507
-        existingSecret: elasticsearch-dev-coordinating-crt # or just 'elasticsearch-coordinating-crt' if the release name happens to be 'elasticsearch'
+        existingSecret: elasticsearch-aurora-prd-coordinating-crt # or just 'elasticsearch-coordinating-crt' if the release name happens to be 'elasticsearch'
         # As the certs are auto-generated, they are pemCerts so set to true
         usePemCerts: true
     hosts:
