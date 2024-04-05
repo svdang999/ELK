@@ -84,7 +84,9 @@ PUT aurora-log-prd-000001
   }
 }
 
-#3 Point app config to index name "aurora-log-prd"
+#3 Create "aurora-log-policy" index lifecycle policy
+
+#4 Point app config to index name "aurora-log-prd"
 
 
 ######################### Reindex exist index to the new one #########################
