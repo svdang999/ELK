@@ -58,7 +58,10 @@ PUT operate-event*/_settings
 
 ######################### Rollover steps for index #########################
 # Production Aurora
-#1 Create index template
+
+#1 Create "aurora-log-policy" index lifecycle policy (if not exists)
+
+#2 Create index template
 # https://stackoverflow.com/questions/63076859/open-distro-for-elastic-search-source-alias-does-not-point-to-a-write-index
 PUT _index_template/aurora-log-prd
 {
@@ -74,7 +77,7 @@ PUT _index_template/aurora-log-prd
 }
 
 
-#2 Bootstrap initial index to template
+#3 Create initial index linked to template
 PUT aurora-log-prd-000001
 {
   "aliases": {
@@ -84,9 +87,8 @@ PUT aurora-log-prd-000001
   }
 }
 
-#3 Create "aurora-log-policy" index lifecycle policy
 
-#4 Point app config to index name "aurora-log-prd"
+#4 Point app config to index name "aurora-log-prd" or reindex
 
 
 ######################### Reindex exist index to the new one #########################
