@@ -101,7 +101,7 @@ resources:
     cpu: "64m"
     memory: "2Gi"
   limits:
-    cpu: "1000m"
+    # cpu: "1000m"
     memory: "2Gi"
 
 initResources:
