@@ -8,7 +8,7 @@ https://artifacthub.io/packages/helm/elastic/elasticsearch/7.17.1
 ```
 helm repo add elastic https://helm.elastic.co
 helm repo update
-helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 --set replicas=1 --set minimumMasterNodes=1
+helm -n logging install elasticsearch-crew-7 elastic/elasticsearch --version 7.17.1 --set replicas=1 --set minimumMasterNodes=1 --set volumeClaimTemplate.resources.requests.storage=64Gi
 ```
 
 2. Create the p12
