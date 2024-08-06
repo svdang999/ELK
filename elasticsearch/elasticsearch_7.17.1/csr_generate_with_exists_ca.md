@@ -1,10 +1,15 @@
-### 1. Generate a Certificate Signing Request (CSR)
+### 1. Generates a CA certificate and private key in PKCS#12 format
+```
+https://github.com/svdang999/ELK/blob/main/elasticsearch/elasticsearch_7.17.1/ca_generate.md
+```
+
+### 2. Generate a Certificate Signing Request (CSR)
 ```
 elasticsearch@elasticsearch-master-0:~$ ./bin/elasticsearch-certutil http
 
 ## Elasticsearch HTTP Certificate Utility
 
-The 'http' command guides you through the process of generating certificates
+The 'http' command guides you throfugh the process of generating certificates
 for use on the HTTP (Rest) interface for Elasticsearch.
 
 This tool will ask you a number of questions in order to generate the right
@@ -182,7 +187,7 @@ Zip file written to /usr/share/elasticsearch/elasticsearch-ssl-http-with-ca.zip
 elasticsearch@elasticsearch-master-0:~$
 ```
 
-### 2. Copy the generated zip file to the local computer
+### 3. Copy the generated zip file to the local computer
 ```
 kubectl -n logging cp elasticsearch-master-0:/usr/share/elasticsearch/elasticsearch-ssl-http-with-ca.zi
 p elasticsearch-ssl-http-with-ca.zip
