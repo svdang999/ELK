@@ -29,18 +29,24 @@ clusterDeprecationIndexing: "false"
 # such as elasticsearch.yml and log4j2.properties
 # Ref https://stackoverflow.com/questions/70305348/how-to-install-elasticsearch-on-kubernetes-using-helm-3-nodes-and-production-s
 # https://learn.liferay.com/w/dxp/using-search/installing-and-upgrading-a-search-engine/elasticsearch/securing-elasticsearch
-# esConfig:
-#   elasticsearch.yml: |
-#     xpack.security.enabled: true
-#     xpack.security.transport.ssl.enabled: true
-#     xpack.security.transport.ssl.verification_mode: none 
-#     xpack.security.http.ssl.verification_mode: none
-#     xpack.security.transport.ssl.client_authentication: required
-#     xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-#     xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-#     xpack.security.http.ssl.enabled: true
-#     xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-#     xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+esConfig:
+  elasticsearch.yml: |
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    xpack.security.transport.ssl.verification_mode: none 
+    xpack.security.http.ssl.verification_mode: none
+    
+    ## https://stackoverflow.com/questions/56318110/transport-ssl-must-be-enabled-if-security-is-enabled-on-a-basic-license
+    ## In production mode, if you want to use any of the xpack security features by enabling setting 
+    ## xpack.security.enabled: true, then you need to use TLS/SSL certificate.
+    
+    #xpack.security.transport.ssl.client_authentication: required
+    #xpack.security.transport.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    #xpack.security.transport.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    #xpack.security.http.ssl.enabled: true
+    #xpack.security.http.ssl.truststore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+    #xpack.security.http.ssl.keystore.path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+
 
 esJvmOptions: {}
 #  processors.options: |
