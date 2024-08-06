@@ -6,10 +6,6 @@ helm -n logging install elasticsearch-7 elastic/elasticsearch --version 7.17.1 -
 
 2. Generates a CA certificate and private key in PKCS#12 format
 ```
-https://github.com/svdang999/ELK/blob/main/elasticsearch/elasticsearch_7.17.1/ca_generate.md
-```
-
-```
 elasticsearch@elasticsearch-master-0:~$ bin/elasticsearch-certutil ca
 This tool assists you in the generation of X.509 certificates and certificate
 signing requests for use with SSL/TLS in the Elastic stack.
@@ -37,12 +33,7 @@ elasticsearch@elasticsearch-master-0:~$ ls -lsrht | grep elastic-stack-ca.p12
 
 
 
-3. Generate a Certificate Signing Request using elastic-stack-ca.p12
-```
-https://github.com/svdang999/ELK/blob/main/elasticsearch/elasticsearch_7.17.1/csr_generate_with_exists_ca.md
-```
-
-### Output example
+3. Generate a Certificate Signing Request using elastic-stack-ca.p12 created in step 2
 ```
 elasticsearch@elasticsearch-master-0:~$ ./bin/elasticsearch-certutil http
 
