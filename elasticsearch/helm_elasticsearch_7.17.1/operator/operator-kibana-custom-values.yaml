@@ -1,7 +1,7 @@
 ## https://artifacthub.io/packages/helm/elastic/kibana/7.17.1
 ## helm -n logging install kibana-crew-7 elastic/kibana --version 7.17.1 -f https://raw.githubusercontent.com/svdang999/ELK/main/kibana/helm_kibana_7.17.1/crew-demo-custom-values.yaml
 ---
-elasticsearchHosts: "http://elasticsearch-master.elastic:9200"
+elasticsearchHosts: "http://elasticsearch-master.logging:9200"
 
 replicas: 1
 
@@ -50,10 +50,10 @@ podAnnotations: {}
 
 resources:
   requests:
-    cpu: "100m"
-    memory: "512Mi"
+    cpu: "10m"
+    memory: "64Mi"
   limits:
-    cpu: "1000m"
+    #cpu: "1000m"
     memory: "1000Mi"
 
 protocol: http
